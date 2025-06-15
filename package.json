@@ -31,7 +31,7 @@
     "@stylistic/eslint-plugin": "4.4.0",
     "@types/jasmine": "5.1.8",
     "angular-eslint": "19.6.0",
-    "eslint": "9.27.0",
+    "eslint": "9.28.0",
     "eslint-config-prettier": "10.1.5",
     "husky": "9.1.7",
     "jasmine-core": "5.7.1",
@@ -42,9 +42,9 @@
     "karma-jasmine-html-reporter": "2.1.0",
     "prettier": "3.5.3",
     "prettier-plugin-tailwindcss": "0.6.12",
-    "stylelint": "16.19.1",
+    "stylelint": "16.20.0",
     "stylelint-config-standard": "38.0.0",
     "typescript": "5.8.3",
-    "typescript-eslint": "8.32.1"
+    "typescript-eslint": "8.33.0"
   }
 }
