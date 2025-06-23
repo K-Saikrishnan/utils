@@ -1,0 +1,4 @@
+just lint__format
+just lint__eslint
+just lint__stylelint
+just lint__commitlint

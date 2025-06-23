@@ -1,0 +1,88 @@
+name: CI
+
+permissions: {}
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+concurrency:
+  group: '${{ github.workflow }}-${{ github.event.pull_request.head.sha || github.sha }}'
+  cancel-in-progress: true
+
+env:
+  HUSKY: 0
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - command: 'lint__format'
+            name: format
+          - command: 'lint__eslint'
+            name: eslint
+          - command: 'lint__stylelint'
+            name: stylelint
+          - command: 'lint__commitlint'
+            name: commitlint
+    name: lint - ${{ matrix.name }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: extractions/setup-just@v3
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: 'npm'
+          cache-dependency-path: ./package-lock.json
+
+      - name: install dependencies
+        run: npm ci
+
+      - name: lint - ${{ matrix.name }}
+        run: just ${{ matrix.command }}
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: extractions/setup-just@v3
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: 'npm'
+          cache-dependency-path: ./package-lock.json
+
+      - name: install dependencies
+        run: npm ci
+
+      - name: test
+        run: just test
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: extractions/setup-just@v3
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: 'npm'
+          cache-dependency-path: ./package-lock.json
+
+      - name: install dependencies
+        run: npm ci
+
+      - name: build
+        run: just build
