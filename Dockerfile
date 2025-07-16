@@ -5,7 +5,7 @@ COPY . .
 RUN npm ci
 RUN npm run build
 
-FROM nginx:1.28.0-alpine@sha256:94408aa6adc1b04bd7d0ebdb3ffcc09ee867cf7b94927cffc35634e5d2dce08b AS server
+FROM nginx:1.29.0-alpine@sha256:f741b7f2e82ec8e3daa163b089d48ec163ad0b015d859a1e4f0f2a6202e8cc22 AS server
 COPY --from=build /app/dist/utils/browser /usr/share/nginx/html
 COPY /nginx.conf  /etc/nginx/conf.d/default.conf
 EXPOSE 80
