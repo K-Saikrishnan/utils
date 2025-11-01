@@ -29,7 +29,7 @@
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
     "@stylistic/eslint-plugin": "5.4.0",
-    "@types/jasmine": "5.1.9",
+    "@types/jasmine": "5.1.12",
     "angular-eslint": "19.8.1",
     "eslint": "9.36.0",
     "eslint-config-prettier": "10.1.8",
